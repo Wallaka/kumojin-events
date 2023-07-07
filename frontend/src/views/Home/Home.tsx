@@ -30,10 +30,10 @@ export default function HomePage() {
   if (error) {
     return <p>Error</p>;
   }
+
   return (
     <Grid
       style={{
-        border: "1px solid yellow",
         marginTop: "32px",
         padding: "8px",
       }}
@@ -42,7 +42,7 @@ export default function HomePage() {
       columns={{ xs: 4, sm: 8, md: 12 }}
     >
       {data?.map((event) => (
-        <Grid item xs={2} sm={4} md={4} key={event.id}>
+        <Grid item xs={4} sm={4} md={4} key={event.id}>
           <Card {...event} />
         </Grid>
       ))}

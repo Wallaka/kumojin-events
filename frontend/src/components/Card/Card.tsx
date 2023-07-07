@@ -5,9 +5,12 @@ import Typography from "@mui/material/Typography";
 type Props = {
   name: string;
   description: string;
+  location: string;
+  tz: string;
+  date: string;
 };
 
-export default function BasicCard({ name, description }: Props) {
+export default function BasicCard({ name, description, location, tz, date }: Props) {
   return (
     <Card variant="outlined">
       <CardContent>
@@ -15,6 +18,9 @@ export default function BasicCard({ name, description }: Props) {
           {name}
         </Typography>
         <Typography variant="body2">{description}</Typography>
+        <Typography variant="subtitle1">Location: {location}</Typography>
+        <Typography variant="subtitle1">Timezone: {tz}</Typography>
+        <Typography variant="subtitle1">Date: {new Date(date).toLocaleString()}</Typography>
       </CardContent>
     </Card>
   );
