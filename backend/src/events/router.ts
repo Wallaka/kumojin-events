@@ -1,6 +1,7 @@
 import express from "express";
 
 import { create, findAll } from "./service";
+import type { BaseEvent } from "./types";
 
 const eventsRouter = express.Router();
 
@@ -18,13 +19,16 @@ eventsRouter.get("/", async (_req, res) => {
 
 eventsRouter.post("/", async (req, res) => {
   try {
-    const event = req.body;
+    const event: BaseEvent = req.body;
 
     if (event.name.length > 32) {
       throw new Error("Name must not exceed 32 characters");
     }
 
-    const newEvent = await create(event);
+    const newEvent = await create({
+      ...event,
+      id: Math.floor(Math.random() * 100),
+    });
 
     res.status(201).json(newEvent);
   } catch (e: any) {

@@ -19,6 +19,7 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded());
 
 // Load all events routes
 app.use("/api/events", eventsRouter);

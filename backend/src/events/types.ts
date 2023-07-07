@@ -4,10 +4,9 @@ export interface Event {
   description: string;
   location: string;
   date: string;
-  tz: string;
-  address: string;
 }
 
-export interface Events {
-  events: Event[];
-}
+export type BaseEvent = Pick<
+  Event,
+  "name" | "description" | "location" | "date"
+>;
