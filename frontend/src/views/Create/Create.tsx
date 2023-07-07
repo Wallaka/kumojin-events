@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useMutation } from "react-query";
 import { Grid, TextField, Button, Box, Snackbar, Alert } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useMutation } from "react-query";
 
 type Inputs = {
   name: string;
@@ -120,14 +120,14 @@ export default function Create() {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Button variant="contained" type="submit">
-              Save
+              Create the event
             </Button>
           </Grid>
         </form>
       </Box>
       <Snackbar
         open={showSnacbkbar}
-        autoHideDuration={3000}
+        autoHideDuration={5000}
         onClose={handleCloseSnackbar}
       >
         <Alert

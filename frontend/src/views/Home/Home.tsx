@@ -18,7 +18,7 @@ const getAllEvents = async (): Promise<Event[]> => {
 
 export default function HomePage() {
   const { data, isFetching, error } = useQuery({
-    queryKey: ["events-list"],
+    queryKey: ["event-list"],
     queryFn: () => getAllEvents(),
   });
 
