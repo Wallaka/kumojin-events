@@ -1,27 +1,51 @@
 import { Grid } from "@mui/material";
+import { useQuery } from "react-query";
 
 import Card from "../../components/Card/Card";
-import Nav from "../../components/Nav/Nav";
+
+export interface Event {
+  id: number;
+  name: string;
+  description: string;
+  location: string;
+  date: string;
+  tz: string;
+  address: string;
+}
+
+const getAllEvents = async (): Promise<Event[]> => {
+  const response = await fetch("http://localhost:3001/api/events");
+  return response.json();
+};
 
 export default function HomePage() {
+  const { data, isFetching, error } = useQuery({
+    queryKey: ["events-list"],
+    queryFn: () => getAllEvents(),
+  });
+
+  if (isFetching) {
+    return <p>Fetching...</p>;
+  }
+  if (error) {
+    return <p>Error</p>;
+  }
   return (
-    <>
-      <Grid
-        style={{
-          border: "1px solid yellow",
-          marginTop: "32px",
-          padding: "8px",
-        }}
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-      >
-        {Array.from(Array(6)).map((_, index) => (
-          <Grid item xs={2} sm={4} md={4} key={index}>
-            <Card />
-          </Grid>
-        ))}
-      </Grid>
-    </>
+    <Grid
+      style={{
+        border: "1px solid yellow",
+        marginTop: "32px",
+        padding: "8px",
+      }}
+      container
+      spacing={{ xs: 2, md: 3 }}
+      columns={{ xs: 4, sm: 8, md: 12 }}
+    >
+      {data?.map((event) => (
+        <Grid item xs={2} sm={4} md={4} key={event.id}>
+          <Card {...event} />
+        </Grid>
+      ))}
+    </Grid>
   );
 }
