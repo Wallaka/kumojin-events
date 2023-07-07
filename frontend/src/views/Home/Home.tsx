@@ -9,8 +9,6 @@ export interface Event {
   description: string;
   location: string;
   date: string;
-  tz: string;
-  address: string;
 }
 
 const getAllEvents = async (): Promise<Event[]> => {

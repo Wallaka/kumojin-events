@@ -1,7 +1,6 @@
-import CssBaseline from "@mui/material/CssBaseline";
 import { QueryClient, QueryClientProvider } from "react-query";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import Nav from "./components/Nav/Nav";
 import HomePage from "./views/Home/Home";
